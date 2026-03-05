@@ -12,7 +12,7 @@ Based on this minimal publisher/subscriber tutorial:
 https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
 */
 
-class MinimalPublisher : public rclcpp::Node
+class UserController : public rclcpp::Node
 {
 public:
   UserController()
@@ -22,16 +22,19 @@ public:
     auto timer_callback =
       [this]() -> void {
         auto message = std_msgs::msg::String();
-        message.data = "Fake setpoint data: " + std::to_string(this->count_++);
+        message.data = "Fake setpoint data from user: " + std::to_string(this->count_++);
         RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-        this->publisher_->publish(message);
+        this->setpoint_publisher_->publish(message);
       };
+    // Timer to create test data
     timer_ = this->create_wall_timer(500ms, timer_callback);
   }
 
 private:
-  rclcpp::TimerBase::SharedPtr timer_;
+  // Topic Interaction TODO: Change the message types as appropriate
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr setpoint_publisher_;
+  // Timer
+  rclcpp::TimerBase::SharedPtr timer_;
   size_t count_;
 };
 

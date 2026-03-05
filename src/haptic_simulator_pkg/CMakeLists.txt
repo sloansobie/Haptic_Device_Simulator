@@ -14,21 +14,27 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 # Add Node executables
-# publisher
+# User Controller
 add_executable(user_controller src/User_Controller/user_controller.cpp)
 ament_target_dependencies(user_controller rclcpp std_msgs)
 
-# install(TARGETS
-#   user_controller
-#   DESTINATION lib/${PROJECT_NAME})
-
-# Subscriber 
+# Capstone Controller
 add_executable(capstone_controller src/Capstone_Controller/capstone_controller.cpp)
 ament_target_dependencies(capstone_controller rclcpp std_msgs)
+
+# Simulator
+add_executable(simulator src/Simulator/simulator.cpp)
+ament_target_dependencies(simulator rclcpp std_msgs)
+
+# Visualization
+add_executable(visualization src/Visualization/visualization.cpp)
+ament_target_dependencies(visualization rclcpp std_msgs)
 
 install(TARGETS
   user_controller
   capstone_controller
+  simulator
+  visualization
   DESTINATION lib/${PROJECT_NAME})
 
 
