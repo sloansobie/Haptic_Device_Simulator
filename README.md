@@ -5,9 +5,10 @@
 - Ros2 "Jazzy Jalisco"
 
 ## Useful commands
-- colcon build -> rebuild ros environment
-- source /opt/ros/jazzy/setup.bash -> allow ros to be used in terminal
-- source install/setup.bash -> run first time a terminal is used, or when packages are updated
+- `colcon build` -> rebuild ros environment
+- `source /opt/ros/jazzy/setup.bash`-> run to allow ros to be used in terminal
+- `source install/setup.bash` -> run first time a terminal is used, or when packages are updated
+- `ros2 topic list` -> list topics
 
 ## How to test basic system
 In top lvl workspace:
